@@ -81,6 +81,33 @@ public class PasswordBank(List<PasswordEntry> passwords)
         }
     }
 
+    public enum SortOption
+    {
+        WEBSITE,
+        USERNAME,
+        TIME_CREATED,
+        TIME_EDITED
+    }
+
+    public void Sort(SortOption sortOption)
+    {
+        switch(sortOption)
+        {
+            case SortOption.WEBSITE:
+                passwords = [.. passwords.OrderByDescending(e => e.websiteAddresses.First())];
+                break;
+            case SortOption.USERNAME:
+                passwords = [.. passwords.OrderByDescending(e => e.username)];
+                break;
+            case SortOption.TIME_CREATED:
+                passwords = [.. passwords.OrderByDescending(e => e.timeCreated)];
+                break;
+            case SortOption.TIME_EDITED:
+                passwords = [.. passwords.OrderByDescending(e => e.timeLastEdited)];
+                break;
+        }
+    }
+
     public string ListUsernamesPasswords()
     {
         string output = "";
