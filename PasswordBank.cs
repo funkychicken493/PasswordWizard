@@ -8,11 +8,16 @@ using Newtonsoft.Json;
 
 namespace PasswordWizard;
 
-public class PasswordBank(List<PasswordEntry> passwords)
+public class PasswordBank()
 {
 
-    public List<PasswordEntry> passwords = passwords;
+    public List<PasswordEntry> passwords = [];
     
+    public PasswordBank(List<PasswordEntry> passwordEntries) : this()
+    {
+        passwords = passwordEntries;
+    }
+
     public PasswordEntry? UserSearch()
     {
         throw new NotImplementedException();
