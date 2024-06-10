@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PasswordWizard")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7aaf77340891957b1d88123d74d863be323fc3e")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b821a89ecdf60d00239e871133b2818dd036cdb1")]
+>>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("PasswordWizard")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PasswordWizard")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
