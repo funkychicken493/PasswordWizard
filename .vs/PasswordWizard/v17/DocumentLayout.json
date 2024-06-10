@@ -1,21 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\jscho\\Documents\\CSProjects\\PasswordWizard\\",
+  "WorkspaceRootPath": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|c:\\users\\jscho\\documents\\csprojects\\passwordwizard\\passwordbank.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|solutionrelative:passwordbank.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|c:\\users\\jscho\\documents\\csprojects\\passwordwizard\\passwordentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|solutionrelative:passwordentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|c:\\users\\jscho\\documents\\csprojects\\passwordwizard\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|c:\\users\\jscho\\documents\\github\\passwordwizard\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|c:\\users\\jscho\\documents\\csprojects\\passwordwizard\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|c:\\users\\jscho\\documents\\github\\passwordwizard\\passwordentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|solutionrelative:passwordentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|c:\\users\\jscho\\documents\\github\\passwordwizard\\passwordbank.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|solutionrelative:passwordbank.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|c:\\users\\jscho\\documents\\github\\passwordwizard\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{974E82E2-CB8C-491B-B561-183932CB1F13}|PasswordWizard.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,17 +26,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Main.cs",
-              "DocumentMoniker": "C:\\Users\\jscho\\Documents\\CSProjects\\PasswordWizard\\Main.cs",
+              "DocumentMoniker": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\Main.cs",
               "RelativeDocumentMoniker": "Main.cs",
-              "ToolTip": "C:\\Users\\jscho\\Documents\\CSProjects\\PasswordWizard\\Main.cs",
+              "ToolTip": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\Main.cs",
               "RelativeToolTip": "Main.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAbAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-23T22:07:34.497Z",
               "IsPinned": true,
@@ -46,35 +46,33 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "PasswordEntry.cs",
-              "DocumentMoniker": "C:\\Users\\jscho\\Documents\\CSProjects\\PasswordWizard\\PasswordEntry.cs",
+              "DocumentMoniker": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\PasswordEntry.cs",
               "RelativeDocumentMoniker": "PasswordEntry.cs",
-              "ToolTip": "C:\\Users\\jscho\\Documents\\CSProjects\\PasswordWizard\\PasswordEntry.cs",
+              "ToolTip": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\PasswordEntry.cs",
               "RelativeToolTip": "PasswordEntry.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAASAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwB8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:26:38.557Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-23T22:26:38.557Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "PasswordBank.cs",
-              "DocumentMoniker": "C:\\Users\\jscho\\Documents\\CSProjects\\PasswordWizard\\PasswordBank.cs",
+              "DocumentMoniker": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\PasswordBank.cs",
               "RelativeDocumentMoniker": "PasswordBank.cs",
-              "ToolTip": "C:\\Users\\jscho\\Documents\\CSProjects\\PasswordWizard\\PasswordBank.cs",
+              "ToolTip": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\PasswordBank.cs",
               "RelativeToolTip": "PasswordBank.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwB8AAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:23:38.153Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-23T22:23:38.153Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\jscho\\Documents\\CSProjects\\PasswordWizard\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\jscho\\Documents\\CSProjects\\PasswordWizard\\Program.cs",
+              "ToolTip": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\Program.cs",
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
