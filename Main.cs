@@ -12,7 +12,7 @@ namespace PasswordWizard;
 public class Main
 {
     // Path of the folder where this program's data can be stored.
-    public static string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PasswordWizard");
+    public static string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "PasswordWizard");
     // Primary password file.
     public static string passwordFile = Path.Combine(appDataPath, "passwords.json");
 
