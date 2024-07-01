@@ -18,14 +18,9 @@ public class PasswordBank()
         passwords = passwordEntries;
     }
 
-    public PasswordEntry? UserSearch()
-    {
-        throw new NotImplementedException();
-    }
+    public const string regexActivator = "reg:";
 
-    public string regexActivator = "reg:";
-
-    public enum SearchOption
+    public enum QueryType
     {
         WEBSITE,
         USERNAME,
@@ -33,7 +28,7 @@ public class PasswordBank()
         NOTE
     }
 
-    public void Search(string query, SearchOption searchBy)
+    public void Search(string query, QueryType searchBy)
     {
         bool regex = query.StartsWith(regexActivator);
         if(regex)
@@ -43,7 +38,7 @@ public class PasswordBank()
         }
         switch (searchBy)
         {
-            case SearchOption.WEBSITE:
+            case QueryType.WEBSITE:
                 if(regex)
                 {
                     passwords = [.. passwords.OrderByDescending(e => e.websiteAddresses.Find(w => Regex.Match(w, query).Success) != null).ThenBy(e => e.username)];
@@ -53,7 +48,7 @@ public class PasswordBank()
                     passwords = [.. passwords.OrderByDescending(e => e.websiteAddresses.Contains(query)).ThenBy(e => e.username)];
                 }
                 break;
-            case SearchOption.USERNAME:
+            case QueryType.USERNAME:
                 if(regex)
                 {
                     passwords = [.. passwords.OrderByDescending(e => Regex.Match(e.username, query).Success)];
@@ -63,7 +58,7 @@ public class PasswordBank()
                     passwords = [.. passwords.OrderByDescending(e => e.username.Contains(query))];
                 }
                 break;
-            case SearchOption.PASSWORD:
+            case QueryType.PASSWORD:
                 if (regex)
                 {
                     passwords = [.. passwords.OrderByDescending(e => Regex.Match(e.password, query).Success)];
@@ -73,7 +68,7 @@ public class PasswordBank()
                     passwords = [.. passwords.OrderByDescending(e => e.username.Contains(query))];
                 }
                 break;
-            case SearchOption.NOTE:
+            case QueryType.NOTE:
                 if (regex)
                 {
                     passwords = [.. passwords.OrderByDescending(e => Regex.Match(e.note, query).Success)];

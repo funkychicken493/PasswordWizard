@@ -55,4 +55,18 @@ public class PasswordEntry
     {
         timeLastEdited = DateTime.Now;
     }
+
+    public string GetItemizedWebsiteList()
+    {
+        if(websiteAddresses.Count == 0)
+        {
+            return "None";
+        }
+        string output = "";
+        foreach(string website in websiteAddresses)
+        {
+            output += "\n   - " + website;
+        }
+        return output;
+    }
 }
