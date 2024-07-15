@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 using static PasswordWizard.PasswordBank;
 
 namespace PasswordWizard;
@@ -8,33 +9,56 @@ public class Main
     // Path of the folder where this program's data can be stored.
     public static string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "PasswordWizard");
     // Primary password file.
-    public static string passwordFile = Path.Combine(appDataPath, "passwords.json");
+    public static string passwordFile = Path.Combine(appDataPath, "passwords");
 
     public PasswordBank primaryBank;
 
+    private string masterPassword = "";
+
     public void Run()
     {
+        /*foreach(byte b in AesEncryptionHelper.GetKeyFromPassword(Console.ReadLine() ?? ""))
+        {
+            Console.WriteLine(b);
+        }*//*
+        //AesEncryptionHelper.key = Encoding.UTF8.GetBytes(Console.ReadLine() ?? "");
+        AesEncryptionHelper.key = AesEncryptionHelper.GetKeyFromPassword(masterPassword);
+        //AesEncryptionHelper.TestEncryption();
+        await AesEncryptionHelper.TestDecryption();
+        Console.WriteLine("ok are we still here or what");
+        //AssertPrimaryPasswordFileExists();
+        //LoadSavedPasswordBank();
+        //UserLoop();
+        //SavePasswordBank();*/
+        Login();
         AssertPrimaryPasswordFileExists();
-        LoadSavedPasswordBank();
         UserLoop();
         SavePasswordBank();
     }
 
     public void UserLoop()
     {
-        int action = SelectNumberedMenuOption("What would you like to do?", false, ["Copy, delete, or edit a password", "Add a new password"]);
-        switch (action)
+        while (true)
         {
-            case 1:
-                {
-                    UserFind();
-                    break;
-                }
-            case 2:
-                {
-                    AddNewPassword();
-                    break;
-                }
+            int action = SelectNumberedMenuOption("What would you like to do?", false, ["Copy, delete, or edit a password", "Add a new password", "Exit program"]);
+            switch (action)
+            {
+                case 1:
+                    {
+                        UserFind();
+                        break;
+                    }
+                case 2:
+                    {
+                        AddNewPassword();
+                        break;
+                    }
+                case 3:
+                    {
+                        return;
+                    }
+            }
+            SavePasswordBank();
         }
     }
 
@@ -91,17 +115,76 @@ public class Main
         {
             passwordSearchResults.Add(
                 "\n  Websites: " + entry.GetItemizedWebsiteList() +
-                "\n  Username: " + entry.username +
-                "\n  Password: " + entry.password
+                "\n  Username: " + entry.username
                 );
         }
         int selection = SelectNumberedMenuOption("Select a password:", true, passwordSearchResults.ToArray());
-        ActionPassword(selection);
+        if (selection == 0) { return; }
+        ActionPassword(selection - 1);
     }
 
     public void ActionPassword(int passwordIndex)
     {
+        int selection = SelectNumberedMenuOption("Select what you want to do with this password:", true, ["Copy", "Edit", "Delete"]);
+        if (selection == 0) { return; }
+        switch (selection)
+        {
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    EditPassword(passwordIndex);
+                    break;
+                }
+            case 3:
+                {
+                    bool confirm = GetBooleanInput("Are you sure you want to delete this password? (type yes or no)");
+                    if (!confirm)
+                    {
+                        return;
+                    }
+                    primaryBank.passwords.RemoveAt(passwordIndex);
+                    return;
+                }
+        }
+    }
 
+    public void EditPassword(int passwordIndex)
+    {
+        int selection = SelectNumberedMenuOption("Select what part you want to edit:", true, ["Username", "Website", "Note", "Password"]);
+        if (selection == 0) { return; }
+        switch (selection)
+        {
+            case 1:
+                {
+                    string newUsername = GetNonEmptyInput("What would you like to change your username to? (type cancel to cancel)");
+                    if (newUsername == "cancel") { return; }
+                    primaryBank.passwords[passwordIndex].username = newUsername;
+                    break;
+                }
+            case 2:
+                {
+                    List<string> newWebsites = GetListOfInputs("Type a list of websites you can use this password on, press enter for each new entry. When you are done, simply type \"done\".");
+                    primaryBank.passwords[passwordIndex].websiteAddresses = newWebsites;
+                    break;
+                }
+            case 3:
+                {
+                    string newNote = GetNonEmptyInput("What would you like to change your note to? (type cancel to cancel)");
+                    if (newNote == "cancel") { return; }
+                    primaryBank.passwords[passwordIndex].note = newNote;
+                    break;
+                }
+            case 4:
+                {
+                    string newPassword = GetNonEmptyInput("What would you like to change your password to? (type cancel to cancel)");
+                    if (newPassword == "cancel") { return; }
+                    primaryBank.passwords[passwordIndex].password = newPassword;
+                    break;
+                }
+        }
     }
 
     /// <summary>
@@ -159,14 +242,54 @@ public class Main
         return Console.ReadLine() ?? "";
     }
 
+    public static List<string> GetListOfInputs(string prompt)
+    {
+        List<string> output = [];
+        string input = GetNonEmptyInput(prompt);
+        while (input != "done" && input != "none" && input != "")
+        {
+            output.Add(input);
+            input = Console.ReadLine() ?? "";
+        }
+        return output;
+    }
+
+    public static bool GetBooleanInput(string prompt)
+    {
+        string input = GetNonEmptyInput(prompt);
+        while (!IsConfirm(input) && !IsDeny(input))
+        {
+            Console.WriteLine("Please enter \"yes\" or \"no\".");
+            input = Console.ReadLine() ?? "";
+        }
+        if (IsConfirm(input))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static string[] confirmStrings = ["y", "yes", "true"];
+    public static bool IsConfirm(string input)
+    {
+        return confirmStrings.Contains(input.ToLower());
+    }
+
+    public static string[] denyStrings = ["n", "no", "false"];
+    public static bool IsDeny(string input)
+    {
+        return denyStrings.Contains(input.ToLower());
+    }
+
     public void LoadSavedPasswordBank()
     {
-        primaryBank = JsonConvert.DeserializeObject<PasswordBank>(File.ReadAllText(passwordFile)) ?? new([]);
+        string decryptedPasswordFile = AesEncryptionHelper.DecryptFromFile(passwordFile);
+        primaryBank = JsonConvert.DeserializeObject<PasswordBank>(decryptedPasswordFile) ?? throw new Exception("Failed to decrypt primary password file!");
     }
 
     public void SavePasswordBank()
     {
-        File.WriteAllText(passwordFile, JsonConvert.SerializeObject(primaryBank));
+        AesEncryptionHelper.EncryptIntoFile(JsonConvert.SerializeObject(primaryBank), passwordFile);
     }
 
     public static void AssertPrimaryPasswordFileExists()
@@ -177,7 +300,35 @@ public class Main
             {
                 Directory.CreateDirectory(appDataPath);
             }
-            File.Create(passwordFile);
+            File.Create(passwordFile).Close();
+        }
+    }
+
+    public static bool HasPrimaryPasswordFile()
+    {
+        return File.Exists(passwordFile);
+    }
+
+    public void Login()
+    {
+        if (!HasPrimaryPasswordFile())
+        {
+            string setPassword = GetNonEmptyInput("Please write a master password for your password bank, you will need this every time you start this program. It is recommended that you write it down somewhere. Your password must have at least 8 characters and a special symbol.");
+            while (setPassword.Length < 8 || !Regex.Match(setPassword, "[^a-zA-Z0-9]").Success)
+            {
+                setPassword = GetNonEmptyInput("Please enter a valid password with at least 8 characters and a special symbol.");
+            }
+            GetMaybeEmptyInput("Your password has been set. There is no way to recover your passwords without the master password. Please write it down somewhere safe now. Press enter to once you are finished.");
+            masterPassword = setPassword;
+            AesEncryptionHelper.key = AesEncryptionHelper.GetKeyFromPassword(masterPassword);
+            primaryBank = new();
+        }
+        else
+        {
+            string password = GetNonEmptyInput("Please enter your master password for the program now.");
+            masterPassword = password;
+            AesEncryptionHelper.key = AesEncryptionHelper.GetKeyFromPassword(masterPassword);
+            LoadSavedPasswordBank();
         }
     }
 }
