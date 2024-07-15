@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "P0HIHraMSTk=",
+  "dgSpecHash": "+eeze0YQy7A=",
   "success": true,
   "projectFilePath": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\PasswordWizard.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jscho\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\jscho\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\jscho\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\jscho\\.nuget\\packages\\textcopy\\6.2.1\\textcopy.6.2.1.nupkg.sha512"
   ],
   "logs": []
 }

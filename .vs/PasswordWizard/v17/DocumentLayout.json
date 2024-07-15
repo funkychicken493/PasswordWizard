@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "Main.cs",
               "ToolTip": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\Main.cs",
               "RelativeToolTip": "Main.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAARAAAA",
+              "ViewState": "AQIAAO4AAAAAAAAAAAAQwBUBAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-23T22:07:34.497Z",
               "IsPinned": true,
@@ -56,7 +56,8 @@
               "RelativeToolTip": "AesEncryptionHelper.cs",
               "ViewState": "AQIAACYAAAAAAAAAAAAgwEMAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T19:15:53.682Z"
+              "WhenOpened": "2024-07-08T19:15:53.682Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -66,9 +67,10 @@
               "RelativeDocumentMoniker": "PasswordEntry.cs",
               "ToolTip": "C:\\Users\\jscho\\Documents\\GitHub\\PasswordWizard\\PasswordEntry.cs",
               "RelativeToolTip": "PasswordEntry.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAD0AAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAIBJwD0AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:26:38.557Z"
+              "WhenOpened": "2024-05-23T22:26:38.557Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -80,7 +82,8 @@
               "RelativeToolTip": "PasswordBank.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAgwHYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:23:38.153Z"
+              "WhenOpened": "2024-05-23T22:23:38.153Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -92,7 +95,8 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T22:03:32.207Z"
+              "WhenOpened": "2024-05-23T22:03:32.207Z",
+              "EditorCaption": ""
             }
           ]
         },

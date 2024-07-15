@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PasswordWizard")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbda96965d8ca0f142b3d9eb9740e55546ffb504")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be91cb26e74428bb3ce10bb192a6f3aca5ae5a58")]
 [assembly: System.Reflection.AssemblyProductAttribute("PasswordWizard")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PasswordWizard")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using TextCopy;
 using static PasswordWizard.PasswordBank;
 
 namespace PasswordWizard;
@@ -131,6 +132,18 @@ public class Main
         {
             case 1:
                 {
+                    int copyWhat = SelectNumberedMenuOption("What would you like to copy to your clipboard?", true, ["Username", "Password", "Note"]);
+                    if (copyWhat == 0) { ActionPassword(passwordIndex); return; }
+                    PasswordEntry entry = primaryBank.passwords[passwordIndex];
+                    string toCopy = copyWhat switch
+                    {
+                        1 => entry.username,
+                        2 => entry.password,
+                        3 => entry.note,
+                        // Default case unreachable
+                        _ => entry.password
+                    };
+                    ClipboardService.SetText(toCopy);
                     break;
                 }
             case 2:
@@ -146,6 +159,7 @@ public class Main
                         return;
                     }
                     primaryBank.passwords.RemoveAt(passwordIndex);
+                    Console.WriteLine("Password deleted!");
                     return;
                 }
         }
