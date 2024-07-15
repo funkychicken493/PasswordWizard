@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PasswordWizard;
+﻿namespace PasswordWizard;
 
 public class PasswordEntry
 {
@@ -30,6 +24,9 @@ public class PasswordEntry
         this.timeLastEdited = timeLastEdited;
     }
 
+    /// <summary>
+    /// This constructor exists soley so that the json compiler can put it back together.
+    /// </summary>
     public PasswordEntry()
     {
 

@@ -18,19 +18,6 @@ public class Main
 
     public void Run()
     {
-        /*foreach(byte b in AesEncryptionHelper.GetKeyFromPassword(Console.ReadLine() ?? ""))
-        {
-            Console.WriteLine(b);
-        }*//*
-        //AesEncryptionHelper.key = Encoding.UTF8.GetBytes(Console.ReadLine() ?? "");
-        AesEncryptionHelper.key = AesEncryptionHelper.GetKeyFromPassword(masterPassword);
-        //AesEncryptionHelper.TestEncryption();
-        await AesEncryptionHelper.TestDecryption();
-        Console.WriteLine("ok are we still here or what");
-        //AssertPrimaryPasswordFileExists();
-        //LoadSavedPasswordBank();
-        //UserLoop();
-        //SavePasswordBank();*/
         Login();
         AssertPrimaryPasswordFileExists();
         UserLoop();
@@ -318,14 +305,9 @@ public class Main
         }
     }
 
-    public static bool HasPrimaryPasswordFile()
-    {
-        return File.Exists(passwordFile);
-    }
-
     public void Login()
     {
-        if (!HasPrimaryPasswordFile())
+        if (!File.Exists(passwordFile))
         {
             string setPassword = GetNonEmptyInput("Please write a master password for your password bank, you will need this every time you start this program. It is recommended that you write it down somewhere. Your password must have at least 8 characters and a special symbol.");
             while (setPassword.Length < 8 || !Regex.Match(setPassword, "[^a-zA-Z0-9]").Success)
@@ -342,7 +324,16 @@ public class Main
             string password = GetNonEmptyInput("Please enter your master password for the program now.");
             masterPassword = password;
             AesEncryptionHelper.key = AesEncryptionHelper.GetKeyFromPassword(masterPassword);
-            LoadSavedPasswordBank();
+            try
+            {
+                LoadSavedPasswordBank();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"There was an error trying to access your passwords, please try again: {e}\n");
+                Login();
+                return;
+            }
         }
     }
 }
