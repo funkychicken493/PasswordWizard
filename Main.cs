@@ -28,7 +28,7 @@ public class Main
     {
         while (true)
         {
-            int action = SelectNumberedMenuOption("What would you like to do?", false, ["Copy, delete, or edit a password", "Add a new password", "Exit program"]);
+            int action = SelectNumberedMenuOption("What would you like to do?", false, ["Copy, delete, or edit a password", "Add a new password", "Change master password", "Exit program"]);
             switch (action)
             {
                 case 1:
@@ -42,6 +42,11 @@ public class Main
                         break;
                     }
                 case 3:
+                    {
+                        EditMasterPassword();
+                        break;
+                    }
+                case 4:
                     {
                         return;
                     }
@@ -102,11 +107,13 @@ public class Main
         foreach (PasswordEntry entry in primaryBank.passwords.GetRange(0, primaryBank.passwords.Count > 10 ? 10 : primaryBank.passwords.Count))
         {
             passwordSearchResults.Add(
-                "\n  Websites: " + entry.GetItemizedWebsiteList() +
-                "\n  Username: " + entry.username
+                $"\n  Websites: {entry.GetItemizedWebsiteList()}\n" +
+                $"  Username: {entry.username}\n" +
+                $"  Last edited: {entry.timeLastEdited.ToShortDateString()} {entry.timeLastEdited.ToShortTimeString()}\n" +
+                $"  Created: {entry.timeCreated.ToShortDateString()} {entry.timeCreated.ToShortTimeString()}"
                 );
         }
-        int selection = SelectNumberedMenuOption("Select a password:", true, passwordSearchResults.ToArray());
+        int selection = SelectNumberedMenuOption("Select a password:", true, [.. passwordSearchResults]);
         if (selection == 0) { return; }
         ActionPassword(selection - 1);
     }
@@ -140,8 +147,7 @@ public class Main
                 }
             case 3:
                 {
-                    bool confirm = GetBooleanInput("Are you sure you want to delete this password? (type yes or no)");
-                    if (!confirm)
+                    if (!GetBooleanInput("Are you sure you want to delete this password? (type yes or no)"))
                     {
                         return;
                     }
@@ -186,6 +192,7 @@ public class Main
                     break;
                 }
         }
+        primaryBank.passwords[passwordIndex].UpdateTimeLastEdited();
     }
 
     /// <summary>
@@ -305,18 +312,23 @@ public class Main
         }
     }
 
+    public void EditMasterPassword()
+    {
+        string setPassword = GetNonEmptyInput("Please write a master password for your password bank, you will need this every time you start this program. It is recommended that you write it down somewhere. Your password must have at least 8 characters and a special symbol.");
+        while (setPassword.Length < 8 || !Regex.Match(setPassword, "[^a-zA-Z0-9]").Success)
+        {
+            setPassword = GetNonEmptyInput("Please enter a valid password with at least 8 characters and a special symbol.");
+        }
+        GetMaybeEmptyInput("Your password has been set. There is no way to recover your passwords without the master password. Please write it down somewhere safe now. Press enter to once you are finished.");
+        masterPassword = setPassword;
+        AesEncryptionHelper.key = AesEncryptionHelper.GetKeyFromPassword(masterPassword);
+    }
+
     public void Login()
     {
         if (!File.Exists(passwordFile))
         {
-            string setPassword = GetNonEmptyInput("Please write a master password for your password bank, you will need this every time you start this program. It is recommended that you write it down somewhere. Your password must have at least 8 characters and a special symbol.");
-            while (setPassword.Length < 8 || !Regex.Match(setPassword, "[^a-zA-Z0-9]").Success)
-            {
-                setPassword = GetNonEmptyInput("Please enter a valid password with at least 8 characters and a special symbol.");
-            }
-            GetMaybeEmptyInput("Your password has been set. There is no way to recover your passwords without the master password. Please write it down somewhere safe now. Press enter to once you are finished.");
-            masterPassword = setPassword;
-            AesEncryptionHelper.key = AesEncryptionHelper.GetKeyFromPassword(masterPassword);
+            EditMasterPassword();
             primaryBank = new();
         }
         else

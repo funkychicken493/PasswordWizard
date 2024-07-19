@@ -25,7 +25,7 @@ public class PasswordEntry
     }
 
     /// <summary>
-    /// This constructor exists soley so that the json compiler can put it back together.
+    /// This constructor exists soley so that the json compiler can put an entry back together from the data.
     /// </summary>
     public PasswordEntry()
     {
@@ -55,12 +55,12 @@ public class PasswordEntry
 
     public string GetItemizedWebsiteList()
     {
-        if(websiteAddresses.Count == 0)
+        if (websiteAddresses.Count == 0)
         {
             return "None";
         }
         string output = "";
-        foreach(string website in websiteAddresses)
+        foreach (string website in websiteAddresses)
         {
             output += "\n   - " + website;
         }

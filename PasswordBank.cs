@@ -6,7 +6,7 @@ public class PasswordBank()
 {
 
     public List<PasswordEntry> passwords = [];
-    
+
     public PasswordBank(List<PasswordEntry> passwordEntries) : this()
     {
         passwords = passwordEntries;
@@ -25,7 +25,7 @@ public class PasswordBank()
     public void Search(string query, QueryType searchBy)
     {
         bool regex = query.StartsWith(regexActivator);
-        if(regex)
+        if (regex)
         {
             query = query.Remove(0, regexActivator.Length);
             Console.WriteLine(query);
@@ -33,7 +33,7 @@ public class PasswordBank()
         switch (searchBy)
         {
             case QueryType.WEBSITE:
-                if(regex)
+                if (regex)
                 {
                     passwords = [.. passwords.OrderByDescending(e => e.websiteAddresses.Find(w => Regex.Match(w, query).Success) != null).ThenBy(e => e.username)];
                 }
@@ -43,7 +43,7 @@ public class PasswordBank()
                 }
                 break;
             case QueryType.USERNAME:
-                if(regex)
+                if (regex)
                 {
                     passwords = [.. passwords.OrderByDescending(e => Regex.Match(e.username, query).Success)];
                 }
@@ -85,7 +85,7 @@ public class PasswordBank()
 
     public void Sort(SortOption sortOption)
     {
-        switch(sortOption)
+        switch (sortOption)
         {
             case SortOption.WEBSITE:
                 passwords = [.. passwords.OrderByDescending(e => e.websiteAddresses.First())];
@@ -105,7 +105,7 @@ public class PasswordBank()
     public string ListUsernamesPasswords()
     {
         string output = "";
-        foreach(PasswordEntry entry in passwords)
+        foreach (PasswordEntry entry in passwords)
         {
             output += entry.username + ": " + entry.password + "\n";
         }
